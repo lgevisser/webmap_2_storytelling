@@ -4,7 +4,7 @@
 console.log('Loaded map.js')
 
 // your mapbox token
-mapboxgl.accessToken = 'pk.eyJ1IjoibGdldmlzc2VyIiwiYSI6ImNtbjdlY3kybjAwMjQycXNkcW5wb2diaWkifQ.snhtV7KYMJlGpHsk7W9K-w'
+mapboxgl.accessToken = 'pk.eyJ1IjoibGdldmlzc2VyIiwiYSI6ImNtbjg1eWQ3NzAwMDYycXIwZGNwY203aG8ifQ.F6Mg5_7KMpLVOgYQQMASMg'
 
 var map = new mapboxgl.Map({
     container: 'map',
