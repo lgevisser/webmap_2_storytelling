@@ -5,18 +5,18 @@ var config = {
     markerColor: '#3FB1CE',
     theme: 'light',
     use3dTerrain: false,
-    title: 'Assignment 5: Story Map',
-    subtitle: 'Cycling Infrastructure and Traffic Noise Correlations in Copenhagen, DK',
-    byline: 'By Leo Gevisser',
-    footer: 'Sources: MiljøGIS Noise 2022 (MST Denmark), OpenStreetMap via Geofabrik',
-   chapters: [
+    title: 'Income Inequality through the lens of Cycling Infrastructure and Traffic Noise',
+    subtitle: 'Copenhagen, DK',
+    byline: 'By Leo Gevisser, Julia Le, Jin Gyung Choi',
+    footer: 'Sources: KK Statistikbank 2024 (income); Miljøstyrelsen / MiljøGIS 2022 (noise, EU Directive Lden); Københavns Kommune cykeldata (cycling infrastructure); OpenStreetMap via Geofabrik (transit stations and lines); Metroselskabet (metro planning data). Study area: Copenhagen Municipality, 67 neighborhoods.',
+    chapters: [
         {
             id: 'chapter-1',
             alignment: 'left',
             hidden: false,
-            title: 'Road Traffic Noise as an Urban Health Issue',
+            title: 'A City Known for its Cycling',
             image: '',
-            description: 'Road traffic noise is one of the most pressing environmental health issues in European cities. Under the EU Environmental Noise Directive (2002/49/EC), member states must produce strategic noise maps every five years. In Denmark, nearly one in three homes — around 785,000 — exceed recommended noise limits, with sustained exposure linked to hypertension, heart disease, and premature death. This story map examines 2022 strategic noise mapping data for Copenhagen alongside OpenStreetMap cycling infrastructure to explore their spatial relationship.',
+            description: 'Copenhagen is one of the world\'s most bicycle-friendly cities. More than six in ten residents commute by bike. But aggregated figures obscure an uneven spatial reality. This map examines three datasets — income, traffic noise, and cycling infrastructure — to ask who benefits from Copenhagen\'s cycling city status, and who does not.',
             location: {
                 center: [10.0, 56.0],
                 zoom: 5,
@@ -27,16 +27,11 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {
-                    layer: 'noise-2022',
-                    opacity: 0,
-                    duration: 3000,
-                },
-                {
-                    layer: 'bike-infrastructure',
-                    opacity: 0,
-                    duration: 3000,
-                }
+                { layer: 'kvarter-income-2024-0xafhl', opacity: 0, duration: 1000 },
+                { layer: 'noise-2022', opacity: 0, duration: 1000 },
+                { layer: 'cykeldata-kk-9id0j6', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-stations-09zavy', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-metro-lines-cg960m', opacity: 0, duration: 1000 }
             ],
             onChapterExit: []
         },
@@ -44,11 +39,11 @@ var config = {
             id: 'chapter-2',
             alignment: 'left',
             hidden: false,
-            title: 'The 2022 Strategic Noise Map',
+            title: 'A City Divided by Income',
             image: '',
-            description: 'The noise data shown here comes from the Danish Environmental Protection Agency\'s 2022 strategic noise mapping, measuring road traffic noise at 1.5 metres above ground using the Lden indicator — a day-evening-night weighted average. The dataset contains 6,224 noise contour polygons across greater Copenhagen, ranging from 53 dB to 78 dB. Yellow-green areas indicate moderate exposure (53–58 dB); deep red zones mark the most severely affected areas (73–78 dB).',
+            description: 'Copenhagen\'s 67 neighborhoods reveal a clear income gradient. The darkest blues mark the lowest disposable incomes — a northwest arc through Tingbjerg, Husum, Bellahøj, Bispebjerg, and Haraldsgade. The lightest tones mark the wealthiest areas along the eastern waterfront. Between the poorest and richest neighborhood, a 2.8x income gap.',
             location: {
-                center: [12.4753, 55.6924],
+                center: [12.5200, 55.6850],
                 zoom: 11,
                 pitch: 0,
                 bearing: 0
@@ -57,16 +52,11 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {
-                    layer: 'noise-2022',
-                    opacity: 0.7,
-                    duration: 3000,
-                },
-                {
-                    layer: 'bike-infrastructure',
-                    opacity: 0,
-                    duration: 3000,
-                }
+                { layer: 'kvarter-income-2024-0xafhl', opacity: 0.8, duration: 2000 },
+                { layer: 'noise-2022', opacity: 0, duration: 1000 },
+                { layer: 'cykeldata-kk-9id0j6', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-stations-09zavy', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-metro-lines-cg960m', opacity: 0, duration: 1000 }
             ],
             onChapterExit: []
         },
@@ -74,28 +64,24 @@ var config = {
             id: 'chapter-3',
             alignment: 'right',
             hidden: false,
-            title: 'Where is the Noise Concentrated?',
+            title: 'Where the Noise Falls',
             image: '',
-            description: 'Noise is unevenly distributed across the city. The 73–78 dB band accounts for 14.5% of the total noise-affected area despite comprising only 227 polygons. The largest single high-noise zone is concentrated along the major western arterial corridor — an area of dense through-traffic that cuts through some of Copenhagen\'s most populated inner-city neighbourhoods. These corridors are precisely where residents have the least ability to escape noise exposure in their daily lives.',
+            description: 'The 2022 strategic road noise map shows where Copenhagen\'s traffic generates its heaviest burden. The loudest zones trace arterial corridors radiating west and north from the city centre — cutting directly through the same lower-income neighborhoods visible beneath. Residents most exposed to traffic noise are disproportionately those with the fewest resources to escape it.',
             location: {
-                center: [12.4748, 55.6943],
-                zoom: 13,
-                pitch: 45,
-                bearing: -20
+                center: [12.5200, 55.6850],
+                zoom: 11,
+                pitch: 0,
+                bearing: 0
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {
-                    layer: 'noise-2022',
-                    opacity: 0.75,
-                    duration: 3000,
-                },
-                {
-                    layer: 'bike-infrastructure',
-                    opacity: 0,
-                }
+                { layer: 'kvarter-income-2024-0xafhl', opacity: 0.6, duration: 2000 },
+                { layer: 'noise-2022', opacity: 0.6, duration: 2000 },
+                { layer: 'cykeldata-kk-9id0j6', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-stations-09zavy', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-metro-lines-cg960m', opacity: 0, duration: 1000 }
             ],
             onChapterExit: []
         },
@@ -103,12 +89,12 @@ var config = {
             id: 'chapter-4',
             alignment: 'left',
             hidden: false,
-            title: 'Copenhagen\'s Cycling Network',
+            title: 'A Network of Unequal Quality',
             image: '',
-            description: 'Copenhagen is widely regarded as a global leader in cycling infrastructure, and the network shown here — 9,715 dedicated cycleway segments from OpenStreetMap — reflects decades of sustained investment. The network is well-developed across much of the inner city, and cycling accounts for over 60% of commuter trips. However, the data reveals notable gaps near the city\'s noisiest corridors. For commuters whose routes run along or near major arterial roads, the absence of nearby cycling alternatives means that avoiding high-noise roads is not always a realistic option — cycling through noise rather than away from it.',
+            description: 'Copenhagen\'s cycling network is not uniform. It distinguishes between protected cycle tracks, Supercycle Highways, recreational green routes, and road-sharing connections without separation from cars. The highest-quality infrastructure concentrates around the city centre. The network thins toward the northwest — the same neighborhoods bearing the heaviest noise burden.',
             location: {
-                center: [12.4753, 55.6924],
-                zoom: 12,
+                center: [12.5200, 55.6850],
+                zoom: 11,
                 pitch: 0,
                 bearing: 0
             },
@@ -116,16 +102,11 @@ var config = {
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {
-                    layer: 'noise-2022',
-                    opacity: 0,
-                    duration: 3000,
-                },
-                {
-                    layer: 'bike-infrastructure',
-                    opacity: 0.9,
-                    duration: 3000,
-                }
+                { layer: 'kvarter-income-2024-0xafhl', opacity: 0.4, duration: 2000 },
+                { layer: 'noise-2022', opacity: 0, duration: 1000 },
+                { layer: 'cykeldata-kk-9id0j6', opacity: 0.9, duration: 2000 },
+                { layer: 'copenhagen-stations-09zavy', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-metro-lines-cg960m', opacity: 0, duration: 1000 }
             ],
             onChapterExit: []
         },
@@ -133,29 +114,24 @@ var config = {
             id: 'chapter-5',
             alignment: 'right',
             hidden: false,
-            title: 'Noise and Cycling Infrastructure Together',
+            title: 'Where Three Patterns Converge',
             image: '',
-            description: 'Overlaying both datasets reveals a clear spatial gradient: 2,707 cycleway segments lie within 500 metres of the quietest noise band (53–58 dB), compared to only 1,265 near the loudest zones (73–78 dB). The largest high-noise area in the dataset lies approximately 0.8 km from the nearest cycleway, and several other 68+ dB zones are between 0.5 and 0.7 km from any cycling infrastructure. The gaps in the network are most pronounced precisely where noise burden is highest — raising questions about whether cycling infrastructure investment has kept pace with the city\'s noisiest corridors.',
+            description: 'Haraldsgade sits at the intersection of all three layers: low income, high traffic noise along the Tagensvej–Lyngbyvej corridor, and thin protected cycling coverage compared to wealthier neighborhoods to its south. The pattern isn\'t confined to one block. It recurs across the northwest arc, from Haraldsgade to Tingbjerg.',
             location: {
-                center: [12.4748, 55.6943],
-                zoom: 13,
-                pitch: 0,
-                bearing: 0
+                center: [12.5400, 55.7030],
+                zoom: 14,
+                pitch: 45,
+                bearing: -15
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
             callback: '',
             onChapterEnter: [
-                {
-                    layer: 'noise-2022',
-                    opacity: 0.6,
-                    duration: 3000,
-                },
-                {
-                    layer: 'bike-infrastructure',
-                    opacity: 0.9,
-                    duration: 3000,
-                }
+                { layer: 'kvarter-income-2024-0xafhl', opacity: 0.5, duration: 2000 },
+                { layer: 'noise-2022', opacity: 0.65, duration: 2000 },
+                { layer: 'cykeldata-kk-9id0j6', opacity: 0.9, duration: 2000 },
+                { layer: 'copenhagen-stations-09zavy', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-metro-lines-cg960m', opacity: 0, duration: 1000 }
             ],
             onChapterExit: []
         },
@@ -163,29 +139,49 @@ var config = {
             id: 'chapter-6',
             alignment: 'left',
             hidden: false,
-            title: 'Conclusion and Further Research',
+            title: 'The Transit Gap',
             image: '',
-            description: 'This map offers a preliminary spatial analysis of road traffic noise and cycling infrastructure in Copenhagen. The data points to a pattern worth investigating further: the areas most exposed to noise are not always well-connected by cycling alternatives, and the fragmented nature of the network means many residents cannot meaningfully route around high-noise corridors. Further research incorporating socioeconomic and population data would be needed to make stronger claims about environmental health equity — but the spatial picture presented here suggests the question is worth asking.',
+            description: 'The M3 circle line, opened in 2019, transformed central Copenhagen but does not reach the northwest. Tingbjerg, Husum, and Bellahøj have no metro at all. A Tingbjerg extension is under investigation but unfunded and unscheduled. Meanwhile, the M4 reached wealthy Nordhavn in 2020, and the next confirmed line — the M5, opening 2036 — serves a new waterfront development on the opposite side of the city. The cycling deficit sits within a broader pattern of transport investment following wealth rather than correcting imbalance.',
             location: {
-                center: [12.4753, 55.6924],
+                center: [12.5200, 55.6850],
                 zoom: 11,
-                pitch: 30,
-                bearing: 20
+                pitch: 0,
+                bearing: 0
+            },
+            mapAnimation: 'flyTo',
+            rotateAnimation: false,
+            callback: '',
+            onChapterEnter: [
+                { layer: 'kvarter-income-2024-0xafhl', opacity: 0.5, duration: 2000 },
+                { layer: 'noise-2022', opacity: 0, duration: 1000 },
+                { layer: 'cykeldata-kk-9id0j6', opacity: 0, duration: 1000 },
+                { layer: 'copenhagen-stations-09zavy', opacity: 1, duration: 2000 },
+                { layer: 'copenhagen-metro-lines-cg960m', opacity: 0.9, duration: 2000 }
+            ],
+            onChapterExit: []
+        },
+        {
+            id: 'chapter-7',
+            alignment: 'left',
+            hidden: false,
+            title: 'The Question the Map Raises',
+            image: '',
+            description: 'Three datasets tell a consistent spatial story. The neighborhoods with the highest traffic noise are also the lowest-income, the least served by protected cycling infrastructure, and the furthest from rapid transit. The residents most exposed to the city\'s worst noise are precisely those with the fewest means to escape it.',
+            location: {
+                center: [12.5200, 55.6850],
+                zoom: 11,
+                pitch: 20,
+                bearing: 10
             },
             mapAnimation: 'flyTo',
             rotateAnimation: true,
             callback: '',
             onChapterEnter: [
-                {
-                    layer: 'noise-2022',
-                    opacity: 0.5,
-                    duration: 3000,
-                },
-                {
-                    layer: 'bike-infrastructure',
-                    opacity: 0.7,
-                    duration: 3000,
-                }
+                { layer: 'kvarter-income-2024-0xafhl', opacity: 0.5, duration: 2000 },
+                { layer: 'noise-2022', opacity: 0.4, duration: 2000 },
+                { layer: 'cykeldata-kk-9id0j6', opacity: 0.7, duration: 2000 },
+                { layer: 'copenhagen-stations-09zavy', opacity: 0.8, duration: 2000 },
+                { layer: 'copenhagen-metro-lines-cg960m', opacity: 0.7, duration: 2000 }
             ],
             onChapterExit: []
         }
