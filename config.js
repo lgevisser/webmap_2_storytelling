@@ -40,7 +40,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'A City Divided by Income',
-            image: '',
+            image: './img/legend-income.png',
             description: 'Copenhagen\'s 67 neighborhoods reveal a clear income gradient. The darkest blues mark the lowest disposable incomes — a northwest arc through Tingbjerg, Husum, Bellahøj, Bispebjerg, and Haraldsgade. The lightest tones mark the wealthiest areas along the eastern waterfront. Between the poorest and richest neighborhood, a 2.8x income gap.',
             location: {
                 center: [12.5200, 55.6850],
@@ -65,7 +65,7 @@ var config = {
             alignment: 'right',
             hidden: false,
             title: 'Where the Noise Falls',
-            image: '',
+            image: './img/legend-noise.png',
             description: 'The 2022 strategic road noise map shows where Copenhagen\'s traffic generates its heaviest burden. The loudest zones trace arterial corridors radiating west and north from the city centre — cutting directly through the same lower-income neighborhoods visible beneath. Residents most exposed to traffic noise are disproportionately those with the fewest resources to escape it.',
             location: {
                 center: [12.5200, 55.6850],
@@ -90,7 +90,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'A Network of Unequal Quality',
-            image: '',
+            image: './img/legend-cycling.png',
             description: 'Copenhagen\'s cycling network is not uniform. It distinguishes between protected cycle tracks, Supercycle Highways, recreational green routes, and road-sharing connections without separation from cars. The highest-quality infrastructure concentrates around the city centre. The network thins toward the northwest — the same neighborhoods bearing the heaviest noise burden.',
             location: {
                 center: [12.5200, 55.6850],
@@ -140,7 +140,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'The Transit Gap',
-            image: '',
+            image: './img/legend-transit.png',
             description: 'The M3 circle line, opened in 2019, transformed central Copenhagen but does not reach the northwest. Tingbjerg, Husum, and Bellahøj have no metro at all. A Tingbjerg extension is under investigation but unfunded and unscheduled. Meanwhile, the M4 reached wealthy Nordhavn in 2020, and the next confirmed line — the M5, opening 2036 — serves a new waterfront development on the opposite side of the city. The cycling deficit sits within a broader pattern of transport investment following wealth rather than correcting imbalance.',
             location: {
                 center: [12.5200, 55.6850],
