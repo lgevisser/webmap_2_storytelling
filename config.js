@@ -112,7 +112,7 @@ var config = {
         },
                 {
             id: 'chapter-5',
-            alignment: 'right',
+            alignment: 'left',
             hidden: false,
             title: 'Where the Patterns Converge',
             image: '',
