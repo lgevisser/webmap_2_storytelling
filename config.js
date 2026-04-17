@@ -119,7 +119,7 @@ var config = {
             description: 'The three burdens don\'t land cleanly on a single neighborhood — they recur across a broader northwest arc. From Tingbjerg and Husum at the city edge, through Bispebjerg and Haraldsgade further in, the same pattern repeats: lower income, higher traffic noise along arterial corridors, and thinner protected cycling infrastructure compared to wealthier neighborhoods to the south and east.',
             location: {
                 center: [12.5200, 55.7100],
-                zoom: 14,
+                zoom: 12,
                 pitch: 0,
                 bearing: 0
             },
