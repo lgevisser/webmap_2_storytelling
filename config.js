@@ -1,6 +1,6 @@
 var config = {
     style: 'mapbox://styles/lgevisser/cmn81yclp000y01s4c4uqgr4h',
-    accessToken: 'YOUR_MAPBOX_TOKEN',
+    accessToken: 'pk.eyJ1IjoibGdldmlzc2VyIiwiYSI6ImNtbjg1eWQ3NzAwMDYycXIwZGNwY203aG8ifQ.F6Mg5_7KMpLVOgYQQMASMg',
     showMarkers: false,
     markerColor: '#3FB1CE',
     theme: 'light',
