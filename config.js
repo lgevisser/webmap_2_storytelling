@@ -110,18 +110,18 @@ var config = {
             ],
             onChapterExit: []
         },
-        {
+                {
             id: 'chapter-5',
             alignment: 'right',
             hidden: false,
-            title: 'Where Three Patterns Converge',
+            title: 'Where the Patterns Converge',
             image: '',
-            description: 'Haraldsgade sits at the intersection of all three layers: low income, high traffic noise along the Tagensvej–Lyngbyvej corridor, and thin protected cycling coverage compared to wealthier neighborhoods to its south. The pattern isn\'t confined to one block. It recurs across the northwest arc, from Haraldsgade to Tingbjerg.',
+            description: 'The three burdens don\'t land cleanly on a single neighborhood — they recur across a broader northwest arc. From Tingbjerg and Husum at the city edge, through Bispebjerg and Haraldsgade further in, the same pattern repeats: lower income, higher traffic noise along arterial corridors, and thinner protected cycling infrastructure compared to wealthier neighborhoods to the south and east. No one block tells the whole story, but zoomed out, the spatial overlap is unmistakable.',
             location: {
-                center: [12.5400, 55.7030],
-                zoom: 14,
-                pitch: 45,
-                bearing: -15
+                center: [12.5200, 55.7100],
+                zoom: 12,
+                pitch: 0,
+                bearing: 0
             },
             mapAnimation: 'flyTo',
             rotateAnimation: false,
