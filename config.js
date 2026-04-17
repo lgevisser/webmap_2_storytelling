@@ -40,7 +40,7 @@ var config = {
             alignment: 'left',
             hidden: false,
             title: 'A City Divided by Income',
-            image: './img/legend-income.png',
+            image: './img/legend-income-edit.png',
             description: 'Copenhagen\'s 67 neighborhoods reveal a clear income gradient. The lightest blues mark the lowest disposable incomes — a northwest arc through Tingbjerg, Husum, Bellahøj, Bispebjerg, and Haraldsgade. The darkest tones mark the wealthiest areas along the eastern waterfront. Between the poorest and richest neighborhood, there is a 2.8x income gap.',
             location: {
                 center: [12.5200, 55.6850],
