@@ -277,22 +277,6 @@ var scroller = scrollama();
 
 map.on("load", function() {
 
-    // Hide on load (catches layers already present)
-    customLayers.forEach(function(layerId) {
-        if (map.getLayer(layerId)) {
-            map.setLayoutProperty(layerId, 'visibility', 'none');
-        }
-    });
-
-    // Hide on idle (catches async tilesets that load after 'load' fires)
-    map.once('idle', function() {
-        customLayers.forEach(function(layerId) {
-            if (map.getLayer(layerId)) {
-                map.setLayoutProperty(layerId, 'visibility', 'none');
-            }
-        });
-    });
-
     if (config.use3dTerrain) {
         map.addSource('mapbox-dem', {
             'type': 'raster-dem',
@@ -312,42 +296,54 @@ map.on("load", function() {
         });
     };
 
-    scroller
-    .setup({
-        step: '.step',
-        offset: 0.5,
-        progress: true
-    })
-    .onStepEnter(response => {
-        var chapter = config.chapters.find(chap => chap.id === response.element.id);
-        response.element.classList.add('active');
-        map[chapter.mapAnimation || 'flyTo'](chapter.location);
-        if (config.showMarkers) {
-            marker.setLngLat(chapter.location.center);
-        }
-        if (chapter.onChapterEnter.length > 0) {
-            chapter.onChapterEnter.forEach(setLayerOpacity);
-        }
-        if (chapter.callback) {
-            window[chapter.callback]();
-        }
-        if (chapter.rotateAnimation) {
-            map.once('moveend', function() {
-                const rotateNumber = map.getBearing();
-                map.rotateTo(rotateNumber + 90, {
-                    duration: 24000, easing: function (t) {
-                        return t;
-                    }
+    // Wait for all tiles and sources to fully load before initialising scroller
+    map.once('idle', function() {
+
+        // Hide all custom layers before scroller starts
+        customLayers.forEach(function(layerId) {
+            if (map.getLayer(layerId)) {
+                map.setLayoutProperty(layerId, 'visibility', 'none');
+            }
+        });
+
+        // Now it is safe to initialise scrollama
+        scroller
+        .setup({
+            step: '.step',
+            offset: 0.5,
+            progress: true
+        })
+        .onStepEnter(response => {
+            var chapter = config.chapters.find(chap => chap.id === response.element.id);
+            response.element.classList.add('active');
+            map[chapter.mapAnimation || 'flyTo'](chapter.location);
+            if (config.showMarkers) {
+                marker.setLngLat(chapter.location.center);
+            }
+            if (chapter.onChapterEnter.length > 0) {
+                chapter.onChapterEnter.forEach(setLayerOpacity);
+            }
+            if (chapter.callback) {
+                window[chapter.callback]();
+            }
+            if (chapter.rotateAnimation) {
+                map.once('moveend', function() {
+                    const rotateNumber = map.getBearing();
+                    map.rotateTo(rotateNumber + 90, {
+                        duration: 24000, easing: function (t) {
+                            return t;
+                        }
+                    });
                 });
-            });
-        }
-    })
-    .onStepExit(response => {
-        var chapter = config.chapters.find(chap => chap.id === response.element.id);
-        response.element.classList.remove('active');
-        if (chapter.onChapterExit.length > 0) {
-            chapter.onChapterExit.forEach(setLayerOpacity);
-        }
+            }
+        })
+        .onStepExit(response => {
+            var chapter = config.chapters.find(chap => chap.id === response.element.id);
+            response.element.classList.remove('active');
+            if (chapter.onChapterExit.length > 0) {
+                chapter.onChapterExit.forEach(setLayerOpacity);
+            }
+        });
     });
 });
 
