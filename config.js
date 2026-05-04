@@ -8,7 +8,7 @@ var config = {
     title: 'Public Transit, Noise Pollution and Income Inequality in Copenhagen, DK',
     subtitle: '',
     byline: 'By Leo Gevisser, Julia Le, Jin Gyung Choi',
-    footer: 'Sources: KK Statistikbank 2024 (income); Miljøstyrelsen / MiljøGIS 2022 (noise, EU Directive Lden); Københavns Kommune cykeldata (cycling infrastructure); OpenStreetMap via Geofabrik (transit stations and lines); Metroselskabet (metro planning); City of Copenhagen Bicycle Account 2022; City of Copenhagen agenda bilag (trip distribution by purpose); Mao et al. 2025 (noise emissions of electric vehicles). Study area: Copenhagen Municipality, 67 neighborhoods.',
+    footer: 'Sources: KK Statistikbank 2024 (income); Miljostyrelsen / MiljoGIS 2022 (noise, EU Directive Lden); Kobenhavns Kommune cykeldata (cycling infrastructure); Kobenhavns Kommune trafiktaelling (vehicle counts, 2022-2025); OpenStreetMap via Geofabrik (transit stations and lines); Metroselskabet (metro planning); City of Copenhagen Bicycle Account 2022; City of Copenhagen agenda bilag (trip distribution by purpose); Mao et al. 2025 (noise emissions of electric vehicles). Study area: Copenhagen Municipality, 67 neighborhoods.',
     chapters: [
         {
             id: 'chapter-1',
@@ -66,7 +66,7 @@ var config = {
             hidden: false,
             title: 'Where the Noise Falls',
             image: './img/legend-noise-final.png',
-            description: 'The 2022 Strategic Road Noise Map shows where Copenhagen\'s traffic generates its heaviest burden — where car use is highest. The loudest zones trace arterial corridors radiating west and north from the city centre — cutting directly through the same lower-income neighborhoods visible beneath. Residents most exposed to traffic noise are disproportionately those with the fewest resources to escape it. While EVs are effective at lowering noise by ~1–5 dBA — primarily at low speeds and frequencies, compared to internal combustion engine vehicles — EVs do not contribute significantly to noise reduction at speeds over 50 km/hr.',
+            description: 'The 2022 Strategic Road Noise Map shows where Copenhagen\'s traffic generates its heaviest burden \u2014 where car use is highest. The loudest zones trace arterial corridors radiating west and north from the city centre \u2014 cutting directly through the same lower-income neighborhoods visible beneath. Residents most exposed to traffic noise are disproportionately those with the fewest resources to escape it. Traffic count data from K\u00f8benhavns Kommune (trafikt\u00e6lling) corroborates this spatial pattern, confirming highest vehicle volumes along the same western and northern corridors where noise burden is greatest. While EVs are effective at lowering noise by ~1\u20135 dBA \u2014 primarily at low speeds and frequencies, compared to internal combustion engine vehicles \u2014 EVs do not contribute significantly to noise reduction at speeds over 50 km/hr.',
             location: {
                 center: [12.5200, 55.6850],
                 zoom: 11,
