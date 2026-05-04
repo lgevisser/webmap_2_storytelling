@@ -23,6 +23,16 @@
             width:100vw;
             position: fixed;
         }
+        #loading-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #fff;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
         #header {
             margin: auto;
             width: 100%;
@@ -106,6 +116,7 @@
 <body>
 
 <div id="map"></div>
+<div id="loading-mask"></div>
 <div id="story"></div>
 <script src="./config.js"></script>
 <script>
@@ -296,17 +307,21 @@ map.on("load", function() {
         });
     };
 
-    // Wait for all tiles and sources to fully load before initialising scroller
     map.once('idle', function() {
 
-        // Hide all custom layers before scroller starts
+        // Hide all custom layers
         customLayers.forEach(function(layerId) {
             if (map.getLayer(layerId)) {
                 map.setLayoutProperty(layerId, 'visibility', 'none');
             }
         });
 
-        // Now it is safe to initialise scrollama
+        // Fade out and remove the loading mask
+        var mask = document.getElementById('loading-mask');
+        mask.style.opacity = '0';
+        setTimeout(function() { mask.remove(); }, 500);
+
+        // Now safe to initialise scrollama
         scroller
         .setup({
             step: '.step',
