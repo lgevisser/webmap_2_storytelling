@@ -276,10 +276,21 @@ if (config.showMarkers) {
 var scroller = scrollama();
 
 map.on("load", function() {
+
+    // Hide on load (catches layers already present)
     customLayers.forEach(function(layerId) {
         if (map.getLayer(layerId)) {
             map.setLayoutProperty(layerId, 'visibility', 'none');
         }
+    });
+
+    // Hide on idle (catches async tilesets that load after 'load' fires)
+    map.once('idle', function() {
+        customLayers.forEach(function(layerId) {
+            if (map.getLayer(layerId)) {
+                map.setLayoutProperty(layerId, 'visibility', 'none');
+            }
+        });
     });
 
     if (config.use3dTerrain) {
