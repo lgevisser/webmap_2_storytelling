@@ -78,37 +78,30 @@
         }
         .step {
             padding-bottom: 50vh;
-            /* margin-bottom: 10vh; */
             opacity: 0.25;
         }
         .step.active {
             opacity: 0.9;
         }
-
         .step div {
-            padding:  25px 50px;
+            padding: 25px 50px;
             line-height: 25px;
             font-size: 13px;
         }
-
         .step img {
             width: 100%;
         }
-
         @media (max-width: 750px) {
             .centered, .lefty, .righty, .fully {
                 width: 90vw;
                 margin: 0 auto;
             }
         }
-
-        /* Fix issue on mobile browser where scroll breaks  */
-        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan, 
+        .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan,
         .mapboxgl-canvas-container.mapboxgl-touch-zoom-rotate.mapboxgl-touch-drag-pan .mapboxgl-canvas {
             touch-action: unset;
         }
-
-        </style>
+    </style>
 </head>
 <body>
 
@@ -133,12 +126,23 @@ var alignments = {
     'full': 'fully'
 }
 
+var customLayers = [
+    'kvarter-income-2024-0xafhl',
+    'noise-2022',
+    'cykeldata-kk-9id0j6',
+    'copenhagen-stations-09zavy',
+    'copenhagen-metro-lines-cg960m'
+];
+
 function getLayerPaintType(layer) {
     var layerType = map.getLayer(layer).type;
     return layerTypes[layerType];
 }
 
 function setLayerOpacity(layer) {
+    if (layer.opacity > 0) {
+        map.setLayoutProperty(layer.layer, 'visibility', 'visible');
+    }
     var paintProps = getLayerPaintType(layer.layer);
     paintProps.forEach(function(prop) {
         var options = {};
@@ -149,6 +153,9 @@ function setLayerOpacity(layer) {
         }
         map.setPaintProperty(layer.layer, prop, layer.opacity, options);
     });
+    if (layer.opacity === 0 && !layer.duration) {
+        map.setLayoutProperty(layer.layer, 'visibility', 'none');
+    }
 }
 
 var story = document.getElementById('story');
@@ -266,10 +273,15 @@ if (config.showMarkers) {
     marker.setLngLat(config.chapters[0].location.center).addTo(map);
 }
 
-// instantiate the scrollama
 var scroller = scrollama();
 
 map.on("load", function() {
+    customLayers.forEach(function(layerId) {
+        if (map.getLayer(layerId)) {
+            map.setLayoutProperty(layerId, 'visibility', 'none');
+        }
+    });
+
     if (config.use3dTerrain) {
         map.addSource('mapbox-dem', {
             'type': 'raster-dem',
@@ -277,10 +289,7 @@ map.on("load", function() {
             'tileSize': 512,
             'maxzoom': 14
         });
-        // add the DEM source as a terrain layer with exaggerated height
         map.setTerrain({ 'source': 'mapbox-dem', 'exaggeration': 1.5 });
-
-        // add a sky layer that will show when the map is highly pitched
         map.addLayer({
             'id': 'sky',
             'type': 'sky',
@@ -292,7 +301,6 @@ map.on("load", function() {
         });
     };
 
-    // setup the instance, pass callback functions
     scroller
     .setup({
         step: '.step',
@@ -332,7 +340,6 @@ map.on("load", function() {
     });
 });
 
-// setup resize event
 window.addEventListener('resize', scroller.resize);
 
 </script>
